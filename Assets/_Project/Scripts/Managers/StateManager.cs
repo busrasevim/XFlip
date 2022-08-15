@@ -76,7 +76,7 @@ public class StateManager : MonoBehaviour
         _currentGameState?.OnUpdate();
     }
 
-    private void NextState()
+    public void NextState()
     {
         if (_currentGameState.toGameState != null)
         {

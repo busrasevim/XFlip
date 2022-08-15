@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class UIManager : MonoBehaviour
     public GameObject gamePanel;
     public GameObject finishPanel;
 
+    public TextMeshProUGUI playTimeText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +60,7 @@ public class UIManager : MonoBehaviour
 
         LevelManager.Instance.StartAction += StartGame;
         LevelManager.Instance.EndAction += EndGame;
+
     }
 
     private void StartGame()
@@ -67,6 +71,8 @@ public class UIManager : MonoBehaviour
 
     private void EndGame(bool isWin)
     {
+        SetPlayTimeText();
+
         OpenPanel(gamePanel, false);
         OpenPanel(finishPanel, true);
     }
@@ -78,5 +84,10 @@ public class UIManager : MonoBehaviour
         float alphaValue = 0f;
         if (isOpen) alphaValue = 1f;
         panel.GetComponent<CanvasGroup>().alpha = alphaValue;
+    }
+
+    private void SetPlayTimeText()
+    {
+        playTimeText.text = "PLAY TIME: " + GameManager.Instance.playTime.ToString("0.0") + " s";
     }
 }

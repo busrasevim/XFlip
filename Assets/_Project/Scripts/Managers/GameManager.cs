@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public PlayerCharacter playerCharacter;
+    public float playTime;
 
     // Start is called before the first frame update
     void Start()

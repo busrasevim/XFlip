@@ -20,6 +20,9 @@ public class PlayerCharacter : Character
     {
         base.EndLevel(isWin);
 
+        StateManager.Instance.NextState();  //temp line
+
         LevelManager.Instance.EndLevel(isWin);
+
     }
 }

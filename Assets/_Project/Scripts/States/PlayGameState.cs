@@ -21,6 +21,19 @@ public class PlayGameState : GameState
     private PlayState _currentPlayState;
     private List<PlayState> playStates = new List<PlayState>();
 
+    public override void OnEnter()
+    {
+        base.OnEnter();
+
+        GameManager.Instance.playTime = Time.time;
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        GameManager.Instance.playTime = Time.time - GameManager.Instance.playTime;
+    }
 
     public override void OnUpdate()
     {
