@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour
     public Transform rotatePoint;
 
     private int _flipCount;
+    private float _totalFlipAngle;
 
     public WheelCollider fWheel;
     public WheelCollider bWheel;
@@ -40,6 +41,13 @@ public abstract class Character : MonoBehaviour
     internal protected void RotateMotorbike()
     {
         transform.RotateAround(rotatePoint.position, Vector3.right, 100f*Time.deltaTime);
+        _totalFlipAngle += 100f * Time.deltaTime;
+
+        if (_totalFlipAngle >= 360f)
+        {
+            _totalFlipAngle -= 360f;
+            SetFlipCount(1);
+        }
     }
 
     internal protected void SetFlipCount(int count,bool isReset=false)
@@ -47,28 +55,11 @@ public abstract class Character : MonoBehaviour
         _flipCount += count;
 
         if (isReset) _flipCount = 0;
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        print("triggerenter");
+        if (_flipCount > 1)
+        {
+            //boost açýlacak
+            //eðer boost açýksa süresine ekleme yapýlacak
+        }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        print("triggerexit");
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print("collisionenter");
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        print("collisionexit");
-    }
-
-    
-    
 }
