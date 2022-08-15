@@ -47,19 +47,22 @@ public class LevelManager : MonoBehaviour
     public event Action StartAction;
     public event Action<bool> EndAction;
 
-    public LevelManager()
+    private void Start()
     {
-        StartAction += StartLevel;
-        EndAction += EndLevel;
+        
     }
 
-    private void StartLevel()
+    public void StartLevel()
     {
         //level baþlar
+        Debug.Log("startlevel");
+        StartAction?.Invoke();
     }
 
     private void EndLevel(bool isWin)
     {
+        EndAction?.Invoke(isWin);
+
         if (isWin)
         {
             NextLevel();

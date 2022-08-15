@@ -58,6 +58,8 @@ public class StateManager : MonoBehaviour
     private void Awake()
     {
         FillTheStates();
+
+        LevelManager.Instance.StartAction += NextState;
     }
 
     private void Update()

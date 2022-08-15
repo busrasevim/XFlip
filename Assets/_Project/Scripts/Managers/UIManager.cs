@@ -43,15 +43,40 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    [Header("PANELS")]
+    public GameObject startPanel;
+    public GameObject gamePanel;
+    public GameObject finishPanel;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        OpenPanel(startPanel, true);
+        OpenPanel(gamePanel, false);
+        OpenPanel(finishPanel, false);
+
+        LevelManager.Instance.StartAction += StartGame;
+        LevelManager.Instance.EndAction += EndGame;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StartGame()
     {
-        
+        OpenPanel(startPanel, false);
+        OpenPanel(gamePanel, true);
+    }
+
+    private void EndGame(bool isWin)
+    {
+        OpenPanel(gamePanel, false);
+        OpenPanel(finishPanel, true);
+    }
+
+    private void OpenPanel(GameObject panel, bool isOpen)
+    {
+        panel.SetActive(isOpen);
+
+        float alphaValue = 0f;
+        if (isOpen) alphaValue = 1f;
+        panel.GetComponent<CanvasGroup>().alpha = alphaValue;
     }
 }
