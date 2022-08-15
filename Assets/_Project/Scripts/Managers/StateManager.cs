@@ -84,7 +84,6 @@ public class StateManager : MonoBehaviour
         }
         else
         {
-            print("evet ablam");
             //oyun bitmiþ, finishten sonra çaðýrýlmýþ, sahne yeniden yüklenecek
         }
     }

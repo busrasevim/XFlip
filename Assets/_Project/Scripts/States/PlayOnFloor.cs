@@ -13,11 +13,23 @@ public class PlayOnFloor : PlayState
         playGameState = _playGameState;
     }
 
+    public override void OnEnter()
+    {
+        base.OnEnter();
+
+        Debug.Log("onfloor");
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
 
         if (Input.GetMouseButtonDown(0))
+        {
+            playGameState.NextState();
+        }
+
+        if (!playerCharacter.IsTouchGround())
         {
             playGameState.NextState();
         }

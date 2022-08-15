@@ -10,6 +10,9 @@ public abstract class Character : MonoBehaviour
 
     private int _flipCount;
 
+    public WheelCollider fWheel;
+    public WheelCollider bWheel;
+
     protected void Construct()
     {
         
@@ -18,9 +21,20 @@ public abstract class Character : MonoBehaviour
     internal protected void MoveForward()
     {
       //  motorbikeRB.transform.position += Vector3.forward * Time.deltaTime * 15f;
-        _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, _moveSpeed);
+       // _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, _moveSpeed);
 
+
+        fWheel.motorTorque = 1000f;
+        bWheel.motorTorque = 1000f;
         //duruma göre hareket ilerleme kodu deðiþebilir
+    }
+
+    internal protected bool IsTouchGround()
+    {
+        WheelHit hit;
+        bool isTouch = fWheel.GetGroundHit(out hit) || bWheel.GetGroundHit(out hit);
+
+        return isTouch;
     }
 
     internal protected void RotateMotorbike()
@@ -34,4 +48,27 @@ public abstract class Character : MonoBehaviour
 
         if (isReset) _flipCount = 0;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("triggerenter");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        print("triggerexit");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("collisionenter");
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        print("collisionexit");
+    }
+
+    
+    
 }

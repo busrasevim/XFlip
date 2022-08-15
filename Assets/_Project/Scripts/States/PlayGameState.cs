@@ -31,7 +31,7 @@ public class PlayGameState : GameState
 
     public void NextState()
     {
-        if (_currentPlayState.toPlayState!=null)
+        if (_currentPlayState.toPlayState != null)
         {
             SetState(_currentPlayState.toPlayState);
         }
@@ -41,9 +41,9 @@ public class PlayGameState : GameState
         }
     }
 
-    public void SetState(PlayState state)
+    private void SetState(PlayState state)
     {
-        if (_currentPlayState!=null && state == _currentPlayState)
+        if (_currentPlayState != null && state == _currentPlayState)
             return;
 
         _currentPlayState?.OnExit();
@@ -54,8 +54,8 @@ public class PlayGameState : GameState
 
     private void FillTheStates()
     {
-        PlayOnSky playOnSky = new PlayOnSky(PlayStateType.PlayOnSky, null,GameManager.Instance.playerCharacter,this);
-        PlayOnFloor playOnFloor = new PlayOnFloor(PlayStateType.PlayOnFloor, playOnSky,GameManager.Instance.playerCharacter,this);
+        PlayOnSky playOnSky = new PlayOnSky(PlayStateType.PlayOnSky, null, GameManager.Instance.playerCharacter, this);
+        PlayOnFloor playOnFloor = new PlayOnFloor(PlayStateType.PlayOnFloor, playOnSky, GameManager.Instance.playerCharacter, this);
 
         playStates.Add(playOnFloor);
         playStates.Add(playOnSky);

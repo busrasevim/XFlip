@@ -13,6 +13,14 @@ public class PlayOnSky : PlayState
         playGameState = _playGameState;
     }
 
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+
+        Debug.Log("onsky");
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -29,6 +37,11 @@ public class PlayOnSky : PlayState
         {
             //dönüþün pat diye durmasý önlenecek
             playerCharacter.SetFlipCount(0,true);
+        }
+
+        if (playerCharacter.IsTouchGround())
+        {
+            playGameState.NextState();
         }
     }
 }
