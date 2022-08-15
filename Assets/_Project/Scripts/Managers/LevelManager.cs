@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
         StartAction?.Invoke();
     }
 
-    private void EndLevel(bool isWin)
+    public void EndLevel(bool isWin)
     {
         EndAction?.Invoke(isWin);
 

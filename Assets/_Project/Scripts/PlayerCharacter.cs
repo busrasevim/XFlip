@@ -15,4 +15,11 @@ public class PlayerCharacter : Character
     {
        // MoveForward();
     }
+
+    protected internal override void EndLevel(bool isWin)
+    {
+        base.EndLevel(isWin);
+
+        LevelManager.Instance.EndLevel(isWin);
+    }
 }

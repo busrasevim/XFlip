@@ -62,4 +62,9 @@ public abstract class Character : MonoBehaviour
             //eðer boost açýksa süresine ekleme yapýlacak
         }
     }
+
+    internal protected virtual void EndLevel(bool isWin)
+    {
+
+    }
 }
