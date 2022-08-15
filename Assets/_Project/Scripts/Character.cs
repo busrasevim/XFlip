@@ -21,6 +21,7 @@ public abstract class Character : MonoBehaviour
     private float boostTimer;
     private float defaultBoostTime = 2f;
     private float plusBoostTime = 1f;
+    private Tween boostFinishTween;
     protected void Construct()
     {
 
@@ -34,6 +35,7 @@ public abstract class Character : MonoBehaviour
 
         fWheel.motorTorque = motorTorque * boostMultiple;
         bWheel.motorTorque = motorTorque * boostMultiple;
+
         //duruma göre hareket ilerleme kodu deðiþebilir
     }
 
@@ -87,15 +89,20 @@ public abstract class Character : MonoBehaviour
         onBoost = true;
         boostTimer = defaultBoostTime;
 
+        boostFinishTween?.Kill();
         boostMultiple = 2f;
 
-        while (boostTimer > 0)
+        while (boostTimer > 0f)
         {
             boostTimer -= Time.deltaTime;
             yield return null;
         }
 
-        DOTween.To(() => boostMultiple, x => boostMultiple = x, 1f, 1f);
+        onBoost = false;
+        boostFinishTween = DOTween.Sequence().Append(DOTween.To(() => boostMultiple, x => boostMultiple = x, 1f, 1f)).OnComplete(() =>
+        {
+            boostFinishTween = null;
+        });
 
     }
 }
