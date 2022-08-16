@@ -20,7 +20,6 @@ public class AICharacter : Character
     private void Start()
     {
         StartCoroutine(Hold());
-        LevelManager.Instance.StartAction += StartGame;
     }
 
     // Update is called once per frame
@@ -37,10 +36,14 @@ public class AICharacter : Character
             SetAngularVelocity();
             SetWheelTorque(0f);
         }
+
+        SetCharacterOrderText();
     }
 
-    private void StartGame()
+    protected override void StartGame()
     {
+        base.StartGame();
+
         gameIsStart = true;
     }
 

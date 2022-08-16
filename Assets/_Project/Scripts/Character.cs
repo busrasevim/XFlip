@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public abstract class Character : MonoBehaviour
 {
@@ -31,11 +32,18 @@ public abstract class Character : MonoBehaviour
     public int characterOrder;
     public float finishDistance;
 
+    [SerializeField] private TextMeshPro _orderText;
+
     internal protected void Construct()
     {
-        LevelManager.Instance.StartAction += MoveForward;
+        LevelManager.Instance.StartAction += StartGame;
     }
 
+    protected virtual void StartGame()
+    {
+        MoveForward();
+        _orderText.gameObject.SetActive(true);
+    }
     internal protected void MoveForward()
     {
         SetWheelTorque(motorTorque);
@@ -140,5 +148,10 @@ public abstract class Character : MonoBehaviour
     {
         fWheel.motorTorque = torqueValue * boostMultiple;
         bWheel.motorTorque = torqueValue * boostMultiple;
+    }
+
+    public void SetCharacterOrderText()
+    {
+        _orderText.text = characterOrder.ToString();
     }
 }

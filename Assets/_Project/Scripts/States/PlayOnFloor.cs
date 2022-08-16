@@ -16,8 +16,6 @@ public class PlayOnFloor : PlayState
     public override void OnEnter()
     {
         base.OnEnter();
-
-        Debug.Log("onfloor");
     }
 
     public override void OnUpdate()
