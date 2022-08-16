@@ -18,7 +18,14 @@ public class PlayOnSky : PlayState
     {
         base.OnEnter();
 
-        Debug.Log("onsky");
+        playerCharacter.SetOnSkyAnimation(true);
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        playerCharacter.SetOnSkyAnimation(false);
     }
 
     public override void OnUpdate()

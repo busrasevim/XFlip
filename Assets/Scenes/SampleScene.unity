@@ -156,6 +156,7 @@ MonoBehaviour:
   rotatePoint: {fileID: 2084807286}
   fWheel: {fileID: 1598350482}
   bWheel: {fileID: 1745155229}
+  characterAnimator: {fileID: 0}
 --- !u!4 &31877075
 Transform:
   m_ObjectHideFlags: 0
@@ -1525,6 +1526,7 @@ MonoBehaviour:
   rotatePoint: {fileID: 1924254499}
   fWheel: {fileID: 1254224463}
   bWheel: {fileID: 54816272}
+  characterAnimator: {fileID: 1940335087}
 --- !u!4 &1260987500
 Transform:
   m_ObjectHideFlags: 0
@@ -2374,6 +2376,11 @@ Transform:
   m_Father: {fileID: 667560303}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1940335087 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 269576264020910436, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
+  m_PrefabInstance: {fileID: 269576264383561309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989463006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2605,10 @@ PrefabInstance:
     - target: {fileID: 269576263767643955, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 269576264020910436, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}

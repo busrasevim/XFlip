@@ -22,6 +22,11 @@ public abstract class Character : MonoBehaviour
     private float defaultBoostTime = 2f;
     private float plusBoostTime = 1f;
     private Tween boostFinishTween;
+
+    [SerializeField] private Animator characterAnimator;
+    private string onSkyAnimIntParameter = "OnSkyAnim";
+    private string onSkyAnimBoolParameter = "OnSky";
+
     protected void Construct()
     {
 
@@ -104,5 +109,16 @@ public abstract class Character : MonoBehaviour
             boostFinishTween = null;
         });
 
+    }
+
+    public void SetOnSkyAnimation(bool isOnSky)
+    {
+        if (isOnSky)
+        {
+            int randomParameterIndex = Random.Range(0, 3);
+            characterAnimator.SetInteger(onSkyAnimIntParameter, randomParameterIndex);
+        }
+
+        characterAnimator.SetBool(onSkyAnimBoolParameter, isOnSky);
     }
 }
