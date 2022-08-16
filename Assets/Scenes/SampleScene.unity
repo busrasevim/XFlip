@@ -5990,5 +5990,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 4379413250002303222, guid: 61e4508bd93ccab40a4f0ebcab38fa27, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e4508bd93ccab40a4f0ebcab38fa27, type: 3}
