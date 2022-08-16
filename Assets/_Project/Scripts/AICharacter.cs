@@ -4,15 +4,65 @@ using UnityEngine;
 
 public class AICharacter : Character
 {
-    // Start is called before the first frame update
-    void Start()
+    private float holdTimer;
+    private float holdTime;
+    private float waitTime;
+    private float minHoldTime = 0.1f;
+    private float maxHoldTime = 5f;
+    private float minWaitTime = 0.1f;
+    private float maxWaitTime = 5f;
+
+    private bool onHold;
+    private bool onWait;
+
+    private bool gameIsStart;
+
+    private void Start()
     {
-        
+        StartCoroutine(Hold());
+        LevelManager.Instance.StartAction += StartGame;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (!gameIsStart) return;
+
+        if (IsTouchGround())
+        {
+            SetWheelTorque();
+        }
+        else
+        {
+            SetAngularVelocity();
+            SetWheelTorque(0f);
+        }
+    }
+
+    private void StartGame()
+    {
+        gameIsStart = true;
+    }
+
+    private IEnumerator Hold()
+    {
+        onHold = true;
+        holdTime = Random.Range(minHoldTime, maxHoldTime);
+
+        while (holdTimer<holdTime && !IsTouchGround())
+        {
+            holdTimer += Time.deltaTime;
+            RotateMotorbike();
+            yield return null;
+        }
+        holdTimer = 0f;
+
+        onHold = false;
+        onWait = true;
+        waitTime = Random.Range(minWaitTime, maxWaitTime);
+
+        yield return new WaitForSeconds(waitTime);
+        onWait = false;
+        StartCoroutine(Hold());
     }
 }

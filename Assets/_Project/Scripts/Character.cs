@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] internal GameObject motorBike;
-    [SerializeField] internal Rigidbody _motorbikeRB;
+    [SerializeField] private GameObject motorBike;
+    [SerializeField] private Rigidbody _motorbikeRB;
     private float _moveSpeed = 10f;
     protected float motorTorque = 5000f;
     protected float boostMultiple = 1f;
@@ -38,8 +38,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected void MoveForward()
     {
-        fWheel.motorTorque = motorTorque * boostMultiple;
-        bWheel.motorTorque = motorTorque * boostMultiple;
+        SetWheelTorque(motorTorque);
     }
 
     internal protected bool IsTouchGround()
@@ -126,5 +125,20 @@ public abstract class Character : MonoBehaviour
         finishDistance = Vector3.Distance(motorBike.transform.position, GameManager.Instance.finishObject.position);
     }
 
-   
+   public void SetAngularVelocity()
+    {
+        _motorbikeRB.angularVelocity = Vector3.zero;
+    }
+
+    public void SetWheelTorque()
+    {
+        fWheel.motorTorque = motorTorque * boostMultiple;
+        bWheel.motorTorque = motorTorque * boostMultiple;
+    }
+
+    public void SetWheelTorque(float torqueValue)
+    {
+        fWheel.motorTorque = torqueValue * boostMultiple;
+        bWheel.motorTorque = torqueValue * boostMultiple;
+    }
 }
