@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -47,15 +49,24 @@ public class LevelManager : MonoBehaviour
     public event Action StartAction;
     public event Action<bool> EndAction;
 
-    private void Start()
+    private void Start() => ConstructLevel();
+
+    private void ConstructLevel()
     {
-        
+        int level = DataManager.Instance.Level;
+        if (level >= DataManager.Instance.levelCount)
+        {
+            level = Random.Range(0, DataManager.Instance.levelCount);
+        }
+
+     //   Instantiate(Resources.Load<GameObject>("Levels/Level_" + level));
+
+        //bu level deðerini yükleyecek
     }
 
     public void StartLevel()
     {
         //level baþlar
-        Debug.Log("startlevel");
         StartAction?.Invoke();
     }
 
@@ -66,16 +77,21 @@ public class LevelManager : MonoBehaviour
         if (isWin)
         {
             NextLevel();
-            //success ekraný çýkar
         }
         else
         {
-            //fail ekraný çýkar
+            
         }
     }
 
     private void NextLevel()
     {
+        DataManager.Instance.SetLevel(DataManager.Instance.Level + 1);
+    }
 
+    public void LoadLevel()
+    {
+        //sahneyi yeniden yükleyecek yeni level deðeri ile
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
