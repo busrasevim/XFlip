@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9927eadba856d234c9d084d3ac0f9570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AICount: 1
+  AICount: 2
   finishObject: {fileID: 2392488646629468318}
 --- !u!1 &5439310314822737135
 GameObject:

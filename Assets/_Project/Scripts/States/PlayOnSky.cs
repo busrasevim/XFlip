@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayOnSky : PlayState
 {
@@ -20,7 +21,7 @@ public class PlayOnSky : PlayState
 
         playerCharacter.SetOnSkyAnimation(true);
 
-        playerCharacter.SetWheelTorque(0f);
+       // playerCharacter.SetWheelTorque(0f);
     }
 
     public override void OnExit()
@@ -28,7 +29,10 @@ public class PlayOnSky : PlayState
         base.OnExit();
 
         playerCharacter.SetOnSkyAnimation(false);
-        playerCharacter.SetWheelTorque();
+        //   playerCharacter.SetWheelTorque();
+
+
+        playerCharacter.motorBike.transform.DORotate(Vector3.zero, 1f);
     }
 
     public override void OnUpdate()

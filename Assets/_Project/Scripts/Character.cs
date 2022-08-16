@@ -6,10 +6,10 @@ using TMPro;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] private GameObject motorBike;
+    [SerializeField] internal GameObject motorBike;
     [SerializeField] private Rigidbody _motorbikeRB;
     private float _moveSpeed = 10f;
-    protected float motorTorque = 5000f;
+    protected float motorTorque = 3000f;
     protected float boostMultiple = 1f;
     public Transform rotatePoint;
 
@@ -31,6 +31,7 @@ public abstract class Character : MonoBehaviour
 
     public int characterOrder;
     public float finishDistance;
+    private bool isFinished;
 
     [SerializeField] private TextMeshPro _orderText;
 
@@ -85,7 +86,8 @@ public abstract class Character : MonoBehaviour
 
     internal protected virtual void EndLevel(bool isWin)
     {
-        
+        isFinished = true;
+        SetWheelTorque(0);
     }
 
     private IEnumerator Boost()
@@ -129,6 +131,12 @@ public abstract class Character : MonoBehaviour
 
     public void ComputeDistance()
     {
+        if (isFinished)
+        {
+            finishDistance = 0f;
+            return;
+        }
+
         //yol hesaplanacak kalan, finish le aralarýndaki uzaklýk alýnabilir
         finishDistance = Vector3.Distance(motorBike.transform.position, GameManager.Instance.finishObject.position);
     }
