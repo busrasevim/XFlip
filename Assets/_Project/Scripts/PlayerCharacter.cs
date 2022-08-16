@@ -7,7 +7,6 @@ public class PlayerCharacter : Character
     // Start is called before the first frame update
     void Start()
     {
-        LevelManager.Instance.StartAction += MoveForward;
 
       //  fWheel.motorTorque = motorTorque * boostMultiple;
       //  bWheel.motorTorque = motorTorque * boostMultiple;

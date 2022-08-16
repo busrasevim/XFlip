@@ -49,6 +49,8 @@ public class LevelManager : MonoBehaviour
     public event Action StartAction;
     public event Action<bool> EndAction;
 
+    public Level currentLevel;
+
     private void Start() => ConstructLevel();
 
     private void ConstructLevel()
@@ -59,9 +61,9 @@ public class LevelManager : MonoBehaviour
             level = Random.Range(0, DataManager.Instance.levelCount);
         }
 
-     //   Instantiate(Resources.Load<GameObject>("Levels/Level_" + level));
-
         //bu level deðerini yükleyecek
+        currentLevel = Instantiate(Resources.Load<GameObject>("Levels/Level_" + (level + 1))).GetComponent<Level>();
+        currentLevel.ConstructLevel();
     }
 
     public void StartLevel()
@@ -80,7 +82,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            
+
         }
     }
 

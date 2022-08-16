@@ -31,9 +31,9 @@ public abstract class Character : MonoBehaviour
     public int characterOrder;
     public float finishDistance;
 
-    protected void Construct()
+    internal protected void Construct()
     {
-
+        LevelManager.Instance.StartAction += MoveForward;
     }
 
     internal protected void MoveForward()
