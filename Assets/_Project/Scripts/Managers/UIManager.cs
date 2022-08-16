@@ -50,6 +50,10 @@ public class UIManager : MonoBehaviour
     public GameObject finishPanel;
 
     public TextMeshProUGUI playTimeText;
+    public TextMeshProUGUI finalText;
+
+    public string isWinText = "CONGRATULATIONS!";
+    public string isNotWinText = "TRY AGAIN!";
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +76,7 @@ public class UIManager : MonoBehaviour
     private void EndGame(bool isWin)
     {
         SetPlayTimeText();
+        SetFinalText(isWin);
 
         OpenPanel(gamePanel, false);
         OpenPanel(finishPanel, true);
@@ -89,5 +94,17 @@ public class UIManager : MonoBehaviour
     private void SetPlayTimeText()
     {
         playTimeText.text = "PLAY TIME: " + GameManager.Instance.playTime.ToString("0.0") + " s";
+    }
+
+    private void SetFinalText(bool isWin)
+    {
+        if (isWin)
+        {
+            finalText.text = isWinText;
+        }
+        else
+        {
+            finalText.text = isNotWinText;
+        }
     }
 }

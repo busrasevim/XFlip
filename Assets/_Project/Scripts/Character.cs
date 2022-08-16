@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
+    [SerializeField] private GameObject motorBike;
     [SerializeField] private Rigidbody _motorbikeRB;
     private float _moveSpeed = 10f;
     private float motorTorque = 1000f;
@@ -26,6 +27,9 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private Animator characterAnimator;
     private string onSkyAnimIntParameter = "OnSkyAnim";
     private string onSkyAnimBoolParameter = "OnSky";
+
+    public int characterOrder;
+    public float finishDistance;
 
     protected void Construct()
     {
@@ -80,7 +84,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected virtual void EndLevel(bool isWin)
     {
-
+        
     }
 
     private IEnumerator Boost()
@@ -120,5 +124,11 @@ public abstract class Character : MonoBehaviour
         }
 
         characterAnimator.SetBool(onSkyAnimBoolParameter, isOnSky);
+    }
+
+    public void ComputeDistance()
+    {
+        //yol hesaplanacak kalan, finish le aralarýndaki uzaklýk alýnabilir
+        finishDistance = Vector3.Distance(motorBike.transform.position, GameManager.Instance.finishObject.position);
     }
 }

@@ -40,6 +40,7 @@ public class PlayGameState : GameState
         base.OnUpdate();
 
         _currentPlayState?.OnUpdate();
+        GameManager.Instance.SetCharacterOrders();
     }
 
     public void NextState()
