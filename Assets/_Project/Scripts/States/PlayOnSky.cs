@@ -36,9 +36,6 @@ public class PlayOnSky : PlayState
         {
             //bu süreç boyunca dönecek, çekilene kadar el
             playerCharacter.RotateMotorbike();
-            //her atýlan takla sayýlacak
-            //ona göre boost açýlacak
-            //bir an bile el çekilmiþse boost þansý kaybolacak
         }
         else
         {
@@ -50,5 +47,7 @@ public class PlayOnSky : PlayState
         {
             playGameState.NextState();
         }
+
+        playerCharacter._motorbikeRB.angularVelocity = Vector3.zero;
     }
 }

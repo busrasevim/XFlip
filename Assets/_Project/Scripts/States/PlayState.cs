@@ -14,8 +14,10 @@ public abstract class PlayState : State
     {
         base.OnUpdate();
 
-        playerCharacter.MoveForward();
+        //   playerCharacter.MoveForward();
 
-      
+        // playerCharacter.rotatePoint.eulerAngles=
+
+        Debug.Log(playerCharacter.fWheel.motorTorque);
     }
 }

@@ -5,11 +5,11 @@ using DG.Tweening;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] private GameObject motorBike;
-    [SerializeField] private Rigidbody _motorbikeRB;
+    [SerializeField] internal GameObject motorBike;
+    [SerializeField] internal Rigidbody _motorbikeRB;
     private float _moveSpeed = 10f;
-    private float motorTorque = 1000f;
-    private float boostMultiple = 1f;
+    protected float motorTorque = 5000f;
+    protected float boostMultiple = 1f;
     public Transform rotatePoint;
 
     private int _flipCount;
@@ -38,14 +38,8 @@ public abstract class Character : MonoBehaviour
 
     internal protected void MoveForward()
     {
-        //  motorbikeRB.transform.position += Vector3.forward * Time.deltaTime * 15f;
-        // _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, _moveSpeed);
-
-
         fWheel.motorTorque = motorTorque * boostMultiple;
         bWheel.motorTorque = motorTorque * boostMultiple;
-
-        //duruma göre hareket ilerleme kodu deðiþebilir
     }
 
     internal protected bool IsTouchGround()
@@ -58,7 +52,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected void RotateMotorbike()
     {
-        transform.RotateAround(rotatePoint.position, Vector3.right, 100f * Time.deltaTime);
+        transform.RotateAround(rotatePoint.position, Vector3.right, -100f * Time.deltaTime);
         _totalFlipAngle += 1000f * Time.deltaTime;
 
         if (_totalFlipAngle >= 360f)
@@ -131,4 +125,6 @@ public abstract class Character : MonoBehaviour
         //yol hesaplanacak kalan, finish le aralarýndaki uzaklýk alýnabilir
         finishDistance = Vector3.Distance(motorBike.transform.position, GameManager.Instance.finishObject.position);
     }
+
+   
 }
