@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AICharacter : Character
 {
+    //Input variables
     private float holdTimer;
     private float holdTime;
     private float waitTime = 3f;
@@ -12,18 +12,12 @@ public class AICharacter : Character
     private float minWaitTime = 0.1f;
     private float maxWaitTime = 5f;
 
-    private bool onHold;
-    private bool onWait;
-
     private bool gameIsStart;
-
-    private float minMotorTorque = 2800f;
-    private float maxMotorTorque = 3100f;
 
     private void Start()
     {
-
-        motorTorque = Random.Range(minMotorTorque, maxMotorTorque);
+        float defaultTorque = motorTorque;
+        motorTorque = Random.Range(defaultTorque - 200f, defaultTorque + 200f);
     }
 
     // Update is called once per frame
@@ -53,14 +47,11 @@ public class AICharacter : Character
     {
         if (isFinished) yield break;
 
-        onWait = true;
 
         yield return new WaitForSeconds(waitTime);
 
         waitTime = Random.Range(minWaitTime, maxWaitTime);
-        onWait = false;
 
-        onHold = true;
         holdTime = Random.Range(minHoldTime, maxHoldTime);
 
         while (holdTimer < holdTime && !IsTouchGround())
@@ -72,7 +63,6 @@ public class AICharacter : Character
         holdTimer = 0f;
 
         SetFlipCount(0, true);
-        onHold = false;
 
         StartCoroutine(Hold());
     }

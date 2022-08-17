@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class PlayOnSky : PlayState
 {
-    public PlayOnSky(PlayGameState.PlayStateType _playStateType, PlayState _toPlayState,PlayerCharacter _playerCharacter,PlayGameState _playGameState)
+    public PlayOnSky(PlayGameState.PlayStateType _playStateType, PlayState _toPlayState, PlayerCharacter _playerCharacter, PlayGameState _playGameState)
     {
         playState = _playStateType;
         toPlayState = _toPlayState;
@@ -13,7 +10,6 @@ public class PlayOnSky : PlayState
 
         playGameState = _playGameState;
     }
-
 
     public override void OnEnter()
     {
@@ -41,7 +37,7 @@ public class PlayOnSky : PlayState
         else
         {
             //dönüþün pat diye durmasý önlenecek
-            playerCharacter.SetFlipCount(0,true);
+            playerCharacter.SetFlipCount(0, true);
             playerCharacter.SetAngularVelocity();
         }
 
@@ -49,6 +45,5 @@ public class PlayOnSky : PlayState
         {
             playGameState.NextState();
         }
-
     }
 }

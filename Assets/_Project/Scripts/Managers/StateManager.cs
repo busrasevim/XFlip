@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class StateManager : MonoBehaviour
 {
@@ -40,13 +37,9 @@ public class StateManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))  //TEMP CODE
-        {
-            NextState(); 
-        }
-
         OnUpdate();
     }
+
     public void OnUpdate()
     {
         _currentGameState?.OnUpdate();
@@ -58,15 +51,11 @@ public class StateManager : MonoBehaviour
         {
             SetState(_currentGameState.toGameState);
         }
-        else
-        {
-            //oyun bitmiþ, finishten sonra çaðýrýlmýþ, sahne yeniden yüklenecek
-        }
     }
 
     public void SetState(GameState state)
     {
-        if (_currentGameState !=null && state == _currentGameState)
+        if (_currentGameState != null && state == _currentGameState)
             return;
 
         _currentGameState?.OnExit();

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
@@ -46,7 +44,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
-        //level baþlar
+        //level baþlar, UI butondan
         StartAction?.Invoke();
     }
 
@@ -58,10 +56,6 @@ public class LevelManager : MonoBehaviour
         {
             NextLevel();
         }
-        else
-        {
-
-        }
     }
 
     private void NextLevel()
@@ -71,7 +65,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        //sahneyi yeniden yükleyecek yeni level deðeri ile
+        //sahneyi yeniden yükleyecek yeni level deðeri ile, UI butondan
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

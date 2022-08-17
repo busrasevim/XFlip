@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -42,7 +41,6 @@ public class UIManager : MonoBehaviour
 
         LevelManager.Instance.StartAction += StartGame;
         LevelManager.Instance.EndAction += EndGame;
-
     }
 
     private void StartGame()

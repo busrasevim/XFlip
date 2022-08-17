@@ -1,25 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
 
 public abstract class Character : MonoBehaviour
 {
+    [Header("MOVEMENT VARIABLES")]
     [SerializeField] internal GameObject motorBike;
     [SerializeField] internal Rigidbody _motorbikeRB;
-    private float _moveSpeed = 10f;
-    protected float motorTorque = 3000f;
+    protected float motorTorque = 6000f;
     protected float boostMultiple = 1f;
-    public Transform rotatePoint;
+    [SerializeField] private Transform rotatePoint;
     private float rotateSpeed = 250f;
 
+    [SerializeField] private WheelCollider fWheel;
+    [SerializeField] private WheelCollider bWheel;
+
+    //BOOST VARIABLES
     private int _flipCount;
     private float _totalFlipAngle;
-
-    public WheelCollider fWheel;
-    public WheelCollider bWheel;
-
     private bool onBoost;
     private float boostTimer;
     private float defaultBoostTime = 2f;
@@ -30,8 +29,8 @@ public abstract class Character : MonoBehaviour
     private string onSkyAnimIntParameter = "OnSkyAnim";
     private string onSkyAnimBoolParameter = "OnSky";
 
-    public int characterOrder;
-    public float finishDistance;
+    internal int characterOrder;
+    internal float finishDistance;
     protected bool isFinished;
     internal protected bool isSucceed;
 
@@ -54,9 +53,10 @@ public abstract class Character : MonoBehaviour
     protected virtual void StartGame()
     {
         _motorbikeRB.isKinematic = false;
-        MoveForward();
         _orderText.gameObject.SetActive(true);
+        MoveForward();
     }
+
     internal protected void MoveForward()
     {
         SetWheelTorque(motorTorque);
@@ -94,7 +94,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected void RotateMotorbike()
     {
-            transform.RotateAround(rotatePoint.position, Vector3.right, -rotateSpeed * Time.deltaTime);
+        transform.RotateAround(rotatePoint.position, Vector3.right, -rotateSpeed * Time.deltaTime);
         _totalFlipAngle += (rotateSpeed * Time.deltaTime);
 
         if (_totalFlipAngle >= 360f)
@@ -118,7 +118,7 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    internal protected virtual void EndLevel(bool isWin)
+    internal protected virtual void EndLevel(bool isWin, bool fromFail = false)
     {
         isSucceed = isWin;
         isFinished = true;
@@ -126,13 +126,14 @@ public abstract class Character : MonoBehaviour
         boostFinishTween?.Kill();
         SetWheelTorque(0);
 
-        if (!isWin)
+        if (fromFail)
         {
             _motorbikeRB.constraints = RigidbodyConstraints.None;
 
             Vector3 velocity = _motorbikeRB.velocity;
             DOTween.To(() => velocity, x => velocity = x, Vector3.zero, 1f)
-                .OnUpdate(() => {
+                .OnUpdate(() =>
+                {
                     _motorbikeRB.velocity = velocity;
                 });
         }
@@ -220,6 +221,5 @@ public abstract class Character : MonoBehaviour
     internal protected void ClampVelocity()
     {
         _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, Mathf.Clamp(_motorbikeRB.velocity.z, 1f, _motorbikeRB.velocity.z));
-
     }
 }

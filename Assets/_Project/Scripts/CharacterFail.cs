@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterFail : MonoBehaviour
 {
-    public Character character;
+    [SerializeField] private Character character;
 
     private void Update()
     {
@@ -16,7 +14,7 @@ public class CharacterFail : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             //karakter fail
-            character.EndLevel(false);
+            character.EndLevel(false, true);
         }
     }
 }

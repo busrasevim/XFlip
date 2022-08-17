@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public abstract class PlayState : State
 {
@@ -14,7 +11,6 @@ public abstract class PlayState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-
 
         playerCharacter.SetCharacterOrderText();
         playerCharacter.SetWheelAnimationsSpeed();

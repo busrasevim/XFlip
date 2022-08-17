@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public int AICount;
-    public Transform finishObject;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int AICount;
+    [SerializeField] private Transform finishObject;
 
     public void ConstructLevel()
     {

@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerCharacter : Character
 {
-    protected internal override void EndLevel(bool isWin)
+    protected internal override void EndLevel(bool isWin,bool fromFail=false)
     {
         if (isFinished) return;
 
         base.EndLevel(isWin);
 
-        StateManager.Instance.NextState();  //temp line
+        StateManager.Instance.NextState();
 
         LevelManager.Instance.EndLevel(isWin);
-
     }
 }
