@@ -22,11 +22,6 @@ public class PlayOnFloor : PlayState
     {
         base.OnUpdate();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            playGameState.NextState();
-        }
-
         if (!playerCharacter.IsTouchGround())
         {
             playGameState.NextState();

@@ -1209,9 +1209,9 @@ MonoBehaviour:
   positionTarget: {fileID: 667560303}
   rotatitonTarget: {fileID: 667560303}
   follow: 1
-  rotate: 1
+  rotate: 0
   rotateAllAxis: 0
-  rotateWithTarget: 1
+  rotateWithTarget: 0
   rotateAnimation: 0
   offset: 1
   mxdistance: 0

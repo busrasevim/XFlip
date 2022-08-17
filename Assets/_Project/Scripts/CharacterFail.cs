@@ -16,8 +16,6 @@ public class CharacterFail : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             //karakter fail
-            Debug.Log("character failed");
-
             character.EndLevel(false);
         }
     }

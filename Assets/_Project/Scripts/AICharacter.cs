@@ -31,11 +31,7 @@ public class AICharacter : Character
     {
         if (!gameIsStart) return;
 
-        if (IsTouchGround())
-        {
-            
-        }
-        else
+        if (!IsTouchGround())
         {
             SetAngularVelocity();
         }
@@ -63,7 +59,7 @@ public class AICharacter : Character
         onHold = true;
         holdTime = Random.Range(minHoldTime, maxHoldTime);
 
-        while (holdTimer<holdTime && !IsTouchGround())
+        while (holdTimer < holdTime && !IsTouchGround())
         {
             holdTimer += Time.deltaTime;
             RotateMotorbike();
@@ -73,7 +69,7 @@ public class AICharacter : Character
 
         SetFlipCount(0, true);
         onHold = false;
-      
+
         StartCoroutine(Hold());
     }
 }
