@@ -6,6 +6,8 @@ public class PlayerCharacter : Character
 {
     protected internal override void EndLevel(bool isWin)
     {
+        if (isFinished) return;
+
         base.EndLevel(isWin);
 
         StateManager.Instance.NextState();  //temp line

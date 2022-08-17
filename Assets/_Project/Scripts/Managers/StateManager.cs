@@ -8,40 +8,22 @@ public class StateManager : MonoBehaviour
 {
     #region Singleton
     private static StateManager _instance = null;
-    public static StateManager Instance
+    public static StateManager Instance { get { return _instance; } }
+
+    private void Awake()
     {
-        get
+        if (_instance == null)
         {
-            if (_instance == null)
-            {
-                //Find all singletons of this type in the scene
-                StateManager[] allStateManagersInScene = FindObjectsOfType<StateManager>();
-
-                if (allStateManagersInScene != null && allStateManagersInScene.Length > 0)
-                {
-                    //Destroy all but one singleton
-                    if (allStateManagersInScene.Length > 1)
-                    {
-                        Debug.LogWarning($"You have more than one StateManager in the scene!");
-
-                        for (int i = 1; i < allStateManagersInScene.Length; i++)
-                        {
-                            Destroy(allStateManagersInScene[i].gameObject);
-                        }
-                    }
-
-                    //Now we should have just one singleton in the scene, so pick it
-                    _instance = allStateManagersInScene[0];
-                }
-                //We have no singletons in the scene
-                else
-                {
-                    Debug.LogError($"You need to add the script StateManager to gameobject in the scene!");
-                }
-            }
-
-            return _instance;
+            _instance = this;
         }
+        else
+        {
+            DestroyImmediate(this);
+        }
+
+        FillTheStates();
+
+        LevelManager.Instance.StartAction += NextState;
     }
     #endregion
 
@@ -55,12 +37,6 @@ public class StateManager : MonoBehaviour
     private GameState _currentGameState;
     private List<GameState> _gameStates = new List<GameState>();
 
-    private void Awake()
-    {
-        FillTheStates();
-
-        LevelManager.Instance.StartAction += NextState;
-    }
 
     private void Update()
     {

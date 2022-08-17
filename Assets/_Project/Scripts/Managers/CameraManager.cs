@@ -49,11 +49,19 @@ public class CameraManager : MonoBehaviour
     public Transform defaultTarget;
 
     #region Singleton
-    public static CameraManager instance = null;
+    private static CameraManager _instance = null;
+    public static CameraManager Instance { get { return _instance; } }
+
     private void Awake()
     {
-        if (instance == null) { instance = this; }
-        cam = GetComponent<Camera>();
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
     }
     #endregion
 

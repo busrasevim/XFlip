@@ -31,7 +31,7 @@ public abstract class Character : MonoBehaviour
 
     public int characterOrder;
     public float finishDistance;
-    private bool isFinished;
+    protected bool isFinished;
 
     [SerializeField] private TextMeshPro _orderText;
 
@@ -86,6 +86,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected virtual void EndLevel(bool isWin)
     {
+
         isFinished = true;
         SetWheelTorque(0);
     }
