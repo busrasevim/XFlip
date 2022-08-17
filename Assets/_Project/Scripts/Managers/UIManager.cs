@@ -56,6 +56,13 @@ public class UIManager : MonoBehaviour
         SetPlayTimeText();
         SetFinalText(isWin);
 
+        StartCoroutine(EndGameScreen(2f));
+    }
+
+    private IEnumerator EndGameScreen(float time)
+    {
+        yield return new WaitForSeconds(time);
+
         OpenPanel(gamePanel, false);
         OpenPanel(finishPanel, true);
     }

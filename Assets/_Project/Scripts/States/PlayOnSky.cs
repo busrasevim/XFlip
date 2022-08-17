@@ -31,8 +31,6 @@ public class PlayOnSky : PlayState
         playerCharacter.SetOnSkyAnimation(false);
         //   playerCharacter.SetWheelTorque();
 
-
-        playerCharacter.motorBike.transform.DORotate(Vector3.zero, 1f);
     }
 
     public override void OnUpdate()

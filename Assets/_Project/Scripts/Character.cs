@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     protected float motorTorque = 3000f;
     protected float boostMultiple = 1f;
     public Transform rotatePoint;
+    private float rotateSpeed = 250f;
 
     private int _flipCount;
     private float _totalFlipAngle;
@@ -32,16 +33,19 @@ public abstract class Character : MonoBehaviour
     public int characterOrder;
     public float finishDistance;
     protected bool isFinished;
+    protected bool isSucceed;
 
     [SerializeField] private TextMeshPro _orderText;
 
     internal protected void Construct()
     {
         LevelManager.Instance.StartAction += StartGame;
+        _motorbikeRB.isKinematic = true;
     }
 
     protected virtual void StartGame()
     {
+        _motorbikeRB.isKinematic = false;
         MoveForward();
         _orderText.gameObject.SetActive(true);
     }
@@ -60,8 +64,8 @@ public abstract class Character : MonoBehaviour
 
     internal protected void RotateMotorbike()
     {
-        transform.RotateAround(rotatePoint.position, Vector3.right, -100f * Time.deltaTime);
-        _totalFlipAngle += 1000f * Time.deltaTime;
+        transform.RotateAround(rotatePoint.position, Vector3.right, -rotateSpeed * Time.deltaTime);
+        _totalFlipAngle += rotateSpeed * Time.deltaTime;
 
         if (_totalFlipAngle >= 360f)
         {
@@ -86,7 +90,7 @@ public abstract class Character : MonoBehaviour
 
     internal protected virtual void EndLevel(bool isWin)
     {
-
+        isSucceed = isWin;
         isFinished = true;
         SetWheelTorque(0);
     }
@@ -105,6 +109,8 @@ public abstract class Character : MonoBehaviour
         boostFinishTween?.Kill();
         boostMultiple = 2f;
 
+        SetWheelTorque();
+
         while (boostTimer > 0f)
         {
             boostTimer -= Time.deltaTime;
@@ -112,11 +118,13 @@ public abstract class Character : MonoBehaviour
         }
 
         onBoost = false;
-        boostFinishTween = DOTween.Sequence().Append(DOTween.To(() => boostMultiple, x => boostMultiple = x, 1f, 1f)).OnComplete(() =>
+        boostFinishTween = DOTween.Sequence().Append(DOTween.To(() => boostMultiple, x => boostMultiple = x, 1f, 1f)).OnUpdate(() =>
+        {
+            SetWheelTorque();
+        }).OnComplete(() =>
         {
             boostFinishTween = null;
         });
-
     }
 
     public void SetOnSkyAnimation(bool isOnSky)
@@ -132,17 +140,17 @@ public abstract class Character : MonoBehaviour
 
     public void ComputeDistance()
     {
-        if (isFinished)
+        if (isFinished && isSucceed)
         {
             finishDistance = 0f;
             return;
         }
 
         //yol hesaplanacak kalan, finish le aralarýndaki uzaklýk alýnabilir
-        finishDistance = Vector3.Distance(motorBike.transform.position, GameManager.Instance.finishObject.position);
+        finishDistance = GameManager.Instance.finishObject.position.z - motorBike.transform.position.z;
     }
 
-   public void SetAngularVelocity()
+    public void SetAngularVelocity()
     {
         _motorbikeRB.angularVelocity = Vector3.zero;
     }
