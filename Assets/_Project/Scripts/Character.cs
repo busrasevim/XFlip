@@ -33,7 +33,7 @@ public abstract class Character : MonoBehaviour
     public int characterOrder;
     public float finishDistance;
     protected bool isFinished;
-    protected bool isSucceed;
+    internal protected bool isSucceed;
 
     private bool frontWheel;
     private bool backWheel;
@@ -67,7 +67,7 @@ public abstract class Character : MonoBehaviour
         WheelHit hit;
 
         frontWheel = fWheel.GetGroundHit(out hit);
-        backWheel= bWheel.GetGroundHit(out hit);
+        backWheel = bWheel.GetGroundHit(out hit);
 
         bool isTouch = frontWheel || backWheel;
 
@@ -94,8 +94,8 @@ public abstract class Character : MonoBehaviour
 
     internal protected void RotateMotorbike()
     {
-        transform.RotateAround(rotatePoint.position, Vector3.right, -rotateSpeed * Time.deltaTime);
-        _totalFlipAngle += rotateSpeed * Time.deltaTime;
+            transform.RotateAround(rotatePoint.position, Vector3.right, -rotateSpeed * Time.deltaTime);
+        _totalFlipAngle += (rotateSpeed * Time.deltaTime);
 
         if (_totalFlipAngle >= 360f)
         {
@@ -122,7 +122,20 @@ public abstract class Character : MonoBehaviour
     {
         isSucceed = isWin;
         isFinished = true;
+
+        boostFinishTween?.Kill();
         SetWheelTorque(0);
+
+        if (!isWin)
+        {
+            _motorbikeRB.constraints = RigidbodyConstraints.None;
+
+            Vector3 velocity = _motorbikeRB.velocity;
+            DOTween.To(() => velocity, x => velocity = x, Vector3.zero, 1f)
+                .OnUpdate(() => {
+                    _motorbikeRB.velocity = velocity;
+                });
+        }
     }
 
     private IEnumerator Boost()
@@ -199,17 +212,14 @@ public abstract class Character : MonoBehaviour
 
     public void SetCharacterOrderText()
     {
-        if (GetComponent<PlayerCharacter>())
-        {
-            Debug.Log(_motorbikeRB.velocity);
-            _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, Mathf.Clamp(_motorbikeRB.velocity.z, 1f, _motorbikeRB.velocity.z));
-
-        }
-
-        SetWheelAnimationsSpeed();
-
         if (isSucceed) return;
 
         _orderText.text = characterOrder.ToString();
+    }
+
+    internal protected void ClampVelocity()
+    {
+        _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, Mathf.Clamp(_motorbikeRB.velocity.z, 1f, _motorbikeRB.velocity.z));
+
     }
 }

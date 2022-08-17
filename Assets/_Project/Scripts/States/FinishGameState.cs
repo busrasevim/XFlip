@@ -10,4 +10,11 @@ public class FinishGameState : GameState
         toGameState = _toState;
     }
 
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+       // if (!GameManager.Instance.playerCharacter.isSucceed)
+         //   GameManager.Instance.playerCharacter.SetWheelTorque(0f);
+    }
 }

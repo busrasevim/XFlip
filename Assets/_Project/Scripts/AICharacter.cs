@@ -37,6 +37,8 @@ public class AICharacter : Character
         }
 
         SetCharacterOrderText();
+        SetWheelAnimationsSpeed();
+        ClampVelocity();
     }
 
     protected override void StartGame()
@@ -49,6 +51,8 @@ public class AICharacter : Character
 
     private IEnumerator Hold()
     {
+        if (isFinished) yield break;
+
         onWait = true;
 
         yield return new WaitForSeconds(waitTime);

@@ -8,13 +8,16 @@ public abstract class PlayState : State
     public PlayState toPlayState;
 
     public PlayerCharacter playerCharacter;
+
     public PlayGameState playGameState;
 
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        
+
         playerCharacter.SetCharacterOrderText();
+        playerCharacter.SetWheelAnimationsSpeed();
+        playerCharacter.ClampVelocity();
     }
 }

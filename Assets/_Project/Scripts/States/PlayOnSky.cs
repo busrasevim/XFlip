@@ -42,6 +42,7 @@ public class PlayOnSky : PlayState
         {
             //dönüþün pat diye durmasý önlenecek
             playerCharacter.SetFlipCount(0,true);
+            playerCharacter.SetAngularVelocity();
         }
 
         if (playerCharacter.IsTouchGround())
@@ -49,6 +50,5 @@ public class PlayOnSky : PlayState
             playGameState.NextState();
         }
 
-        playerCharacter.SetAngularVelocity();
     }
 }
