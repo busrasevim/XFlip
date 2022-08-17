@@ -27,7 +27,6 @@ public class PlayOnSky : PlayState
         base.OnExit();
 
         playerCharacter.SetOnSkyAnimation(false);
-
     }
 
     public override void OnUpdate()

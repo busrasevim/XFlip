@@ -302,7 +302,7 @@ WheelCollider:
     spring: 35000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.03
+  m_SuspensionDistance: 0.01
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -558,7 +558,7 @@ WheelCollider:
     spring: 35000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.03
+  m_SuspensionDistance: 0.01
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -1474,6 +1474,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dirtbike_01-black
       objectReference: {fileID: 0}
+    - target: {fileID: 4165991954631592, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9741541
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165991954631592, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22588454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165991954631592, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165991954631592, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165991954631592, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4260589531444700, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1530,6 +1550,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4996057069266862, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996057069266862, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000043711385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996057069266862, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000043711392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996057069266862, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000043711385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996057069266862, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
 --- !u!4 &266443367776448952 stripped
@@ -1556,6 +1596,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: cb108dfc2ff7ee640b346aa8aa0dc21f, type: 3}
+--- !u!95 &2905680943287417243
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268020839660405108}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2eef6696445f9c34ca8b2e6be5505541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &268220372786530104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1498827989844828, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}
@@ -1670,6 +1730,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300010, guid: cb108dfc2ff7ee640b346aa8aa0dc21f, type: 3}
+--- !u!95 &8054854628486248227
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268705338322615338}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78f1d4c49c14043409f9122aa09a7d8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &268730541106141334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1973828564737266, guid: 0efa64deeb02c9d47977d75c8c71fd0e, type: 3}

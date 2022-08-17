@@ -14,6 +14,7 @@ public abstract class PlayState : State
     {
         base.OnUpdate();
 
+        
         playerCharacter.SetCharacterOrderText();
     }
 }

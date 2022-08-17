@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3155083298052349910
 Transform:
   m_ObjectHideFlags: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3155083298052349908}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.18, y: 0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -53,6 +53,8 @@ MonoBehaviour:
   characterAnimator: {fileID: 2915132584988197361}
   characterOrder: 0
   finishDistance: 0
+  frontWheelAnimator: {fileID: 4900351873021761462}
+  backWheelAnimator: {fileID: 259545111244839182}
   _orderText: {fileID: 9105917439548233568}
 --- !u!1 &3155083299585022576
 GameObject:
@@ -166,6 +168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
+--- !u!95 &259545111244839182 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2905680943287417243, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
+  m_PrefabInstance: {fileID: 3155083297926979733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2915132584697264038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 269576263767643955, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
@@ -194,6 +201,11 @@ WheelCollider:
 --- !u!146 &2915132586366264741 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 269576265385788720, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
+  m_PrefabInstance: {fileID: 3155083297926979733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4900351873021761462 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8054854628486248227, guid: 970f16095093fb84baa42ace2b3143ff, type: 3}
   m_PrefabInstance: {fileID: 3155083297926979733}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &9105917439548233568 stripped

@@ -7,7 +7,7 @@ using TMPro;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] internal GameObject motorBike;
-    [SerializeField] private Rigidbody _motorbikeRB;
+    [SerializeField] internal Rigidbody _motorbikeRB;
     private float _moveSpeed = 10f;
     protected float motorTorque = 3000f;
     protected float boostMultiple = 1f;
@@ -35,12 +35,20 @@ public abstract class Character : MonoBehaviour
     protected bool isFinished;
     protected bool isSucceed;
 
+    private bool frontWheel;
+    private bool backWheel;
+    [SerializeField] private Animator frontWheelAnimator;
+    [SerializeField] private Animator backWheelAnimator;
+
     [SerializeField] private TextMeshPro _orderText;
 
     internal protected void Construct()
     {
         LevelManager.Instance.StartAction += StartGame;
         _motorbikeRB.isKinematic = true;
+
+        backWheelAnimator.speed = 0f;
+        frontWheelAnimator.speed = 0f;
     }
 
     protected virtual void StartGame()
@@ -57,9 +65,31 @@ public abstract class Character : MonoBehaviour
     internal protected bool IsTouchGround()
     {
         WheelHit hit;
-        bool isTouch = fWheel.GetGroundHit(out hit) || bWheel.GetGroundHit(out hit);
+
+        frontWheel = fWheel.GetGroundHit(out hit);
+        backWheel= bWheel.GetGroundHit(out hit);
+
+        bool isTouch = frontWheel || backWheel;
 
         return isTouch;
+    }
+
+    internal protected void SetWheelAnimationsSpeed()
+    {
+        SetWheelAnimationSpeed(frontWheelAnimator, frontWheel);
+        SetWheelAnimationSpeed(backWheelAnimator, backWheel);
+    }
+
+    private void SetWheelAnimationSpeed(Animator wheelAnimator, bool wheelBool)
+    {
+        if (wheelBool)
+        {
+            wheelAnimator.speed = _motorbikeRB.velocity.z;
+        }
+        else
+        {
+            wheelAnimator.speed = Mathf.Lerp(wheelAnimator.speed, 0f, 0.1f);
+        }
     }
 
     internal protected void RotateMotorbike()
@@ -169,6 +199,15 @@ public abstract class Character : MonoBehaviour
 
     public void SetCharacterOrderText()
     {
+        if (GetComponent<PlayerCharacter>())
+        {
+            Debug.Log(_motorbikeRB.velocity);
+            _motorbikeRB.velocity = new Vector3(0f, _motorbikeRB.velocity.y, Mathf.Clamp(_motorbikeRB.velocity.z, 1f, _motorbikeRB.velocity.z));
+
+        }
+
+        SetWheelAnimationsSpeed();
+
         if (isSucceed) return;
 
         _orderText.text = characterOrder.ToString();
