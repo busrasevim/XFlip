@@ -169,6 +169,8 @@ public abstract class Character : MonoBehaviour
 
     public void SetCharacterOrderText()
     {
+        if (isSucceed) return;
+
         _orderText.text = characterOrder.ToString();
     }
 }

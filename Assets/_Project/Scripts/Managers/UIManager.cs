@@ -56,7 +56,10 @@ public class UIManager : MonoBehaviour
         SetPlayTimeText();
         SetFinalText(isWin);
 
-        StartCoroutine(EndGameScreen(2f));
+        float time = 0f;
+        if (isWin) time = 2f;
+
+        StartCoroutine(EndGameScreen(time));
     }
 
     private IEnumerator EndGameScreen(float time)

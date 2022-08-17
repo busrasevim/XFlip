@@ -6,7 +6,7 @@ public class AICharacter : Character
 {
     private float holdTimer;
     private float holdTime;
-    private float waitTime;
+    private float waitTime = 3f;
     private float minHoldTime = 0.1f;
     private float maxHoldTime = 5f;
     private float minWaitTime = 0.1f;
@@ -22,7 +22,6 @@ public class AICharacter : Character
 
     private void Start()
     {
-        StartCoroutine(Hold());
 
         motorTorque = Random.Range(minMotorTorque, maxMotorTorque);
     }
@@ -34,12 +33,11 @@ public class AICharacter : Character
 
         if (IsTouchGround())
         {
-            SetWheelTorque();
+            
         }
         else
         {
             SetAngularVelocity();
-            SetWheelTorque(0f);
         }
 
         SetCharacterOrderText();
@@ -49,11 +47,19 @@ public class AICharacter : Character
     {
         base.StartGame();
 
+        StartCoroutine(Hold());
         gameIsStart = true;
     }
 
     private IEnumerator Hold()
     {
+        onWait = true;
+
+        yield return new WaitForSeconds(waitTime);
+
+        waitTime = Random.Range(minWaitTime, maxWaitTime);
+        onWait = false;
+
         onHold = true;
         holdTime = Random.Range(minHoldTime, maxHoldTime);
 
@@ -65,12 +71,9 @@ public class AICharacter : Character
         }
         holdTimer = 0f;
 
+        SetFlipCount(0, true);
         onHold = false;
-        onWait = true;
-        waitTime = Random.Range(minWaitTime, maxWaitTime);
-
-        yield return new WaitForSeconds(waitTime);
-        onWait = false;
+      
         StartCoroutine(Hold());
     }
 }

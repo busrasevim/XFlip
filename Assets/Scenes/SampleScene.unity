@@ -201,12 +201,12 @@ MonoBehaviour:
   playerCharacter: {fileID: 1260987499}
   playTime: 0
   allAICharacters:
-  - {fileID: 31877074}
   - {fileID: 1308294172}
+  - {fileID: 31877074}
   allCharacters:
   - {fileID: 1260987499}
-  - {fileID: 31877074}
   - {fileID: 1308294172}
+  - {fileID: 31877074}
   allOnGameCharacters: []
   finishObject: {fileID: 0}
 --- !u!4 &274705468
@@ -1444,6 +1444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AICharacter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3155083298052349908, guid: 97426b493c5235c43a1e2d473880f13b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3155083298052349910, guid: 97426b493c5235c43a1e2d473880f13b, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2154,6 +2158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AICharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3155083298052349908, guid: 97426b493c5235c43a1e2d473880f13b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3155083298052349910, guid: 97426b493c5235c43a1e2d473880f13b, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2254,6 +2262,10 @@ PrefabInstance:
     - target: {fileID: 4379413249681372652, guid: 61e4508bd93ccab40a4f0ebcab38fa27, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379413249681372652, guid: 61e4508bd93ccab40a4f0ebcab38fa27, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e4508bd93ccab40a4f0ebcab38fa27, type: 3}

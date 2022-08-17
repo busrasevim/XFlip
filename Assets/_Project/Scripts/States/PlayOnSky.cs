@@ -20,8 +20,6 @@ public class PlayOnSky : PlayState
         base.OnEnter();
 
         playerCharacter.SetOnSkyAnimation(true);
-
-       // playerCharacter.SetWheelTorque(0f);
     }
 
     public override void OnExit()
@@ -29,7 +27,6 @@ public class PlayOnSky : PlayState
         base.OnExit();
 
         playerCharacter.SetOnSkyAnimation(false);
-        //   playerCharacter.SetWheelTorque();
 
     }
 
