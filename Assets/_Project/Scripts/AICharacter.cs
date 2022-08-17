@@ -17,9 +17,14 @@ public class AICharacter : Character
 
     private bool gameIsStart;
 
+    private float minMotorTorque = 2800f;
+    private float maxMotorTorque = 3100f;
+
     private void Start()
     {
         StartCoroutine(Hold());
+
+        motorTorque = Random.Range(minMotorTorque, maxMotorTorque);
     }
 
     // Update is called once per frame

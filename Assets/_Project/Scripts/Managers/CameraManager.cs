@@ -62,6 +62,8 @@ public class CameraManager : MonoBehaviour
         {
             DestroyImmediate(this);
         }
+
+        cam = Camera.main;
     }
     #endregion
 
